@@ -1,22 +1,19 @@
 #include <stdio.h>
 
 /**
- * main - Program's Launchaing pad
+ * main - Program's Launching pad
  *
  * Return: 0 if the program executes successfully, otherwise no
  */
 int main(void)
 {
-	char alph = 'a';
+	int numr; /* numr: number */
 
-	while (alph <= 'z')
+	for (numr = '0'; numr <= '9'; numr++)
 	{
-		if (alph != 'e' && alph != 'q')
-		{
-			putchar(alph);
-		}
-		alph++;
+		putchar(numr);
 	}
 	putchar('\n');
 	return (0);
 }
+

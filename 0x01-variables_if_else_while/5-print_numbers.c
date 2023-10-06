@@ -7,12 +7,10 @@
  */
 int main(void)
 {
-	int alph;
+	int numr; /* numr: number */
 
-	for (alph = 'a'; alph <= 'z'; alph++)
-		putchar(alph);
-	for (alph = 'A'; alph <= 'Z'; alph++)
-		putchar(alph);
+	for (numr = 0; numr < 10; numr++)
+		putchar(numr + '0');
 	putchar('\n');
 	return (0);
 }

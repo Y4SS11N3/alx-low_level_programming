@@ -7,12 +7,16 @@
  */
 int main(void)
 {
-	int alph;
-
-	for (alph = 'a'; alph <= 'z'; alph++)
-		putchar(alph);
-	for (alph = 'A'; alph <= 'Z'; alph++)
-		putchar(alph);
+	int numr; // numr: base 16 number
+	
+	for (numr = '0'; numr <= 'f'; numr++)
+	{
+		if ((numr <= '9') || (numr >= 'a'))
+	{
+		putchar(numr);
+	}
+	}	
 	putchar('\n');
 	return (0);
 }
+
