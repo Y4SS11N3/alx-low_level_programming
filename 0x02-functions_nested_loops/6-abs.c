@@ -8,17 +8,16 @@
  */
 int _abs(int numr)
 {
-    int abs_val; /* variable to hold the absolute value */
+	int Abs_Val;
 
-    if (numr >= 0)
-    {
-        abs_val = numr;
-    }
-    else
-    {
-        abs_val = -numr;
-    }
+	if (numr >= 0)
+	{
+		Abs_Val = numr;
+	}
+	else
+	{
+		Abs_Val = -numr;
+	}
 
-    return (abs_val);
+	return (Abs_Val);
 }
-

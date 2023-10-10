@@ -7,7 +7,7 @@
  */
 void jack_bauer(void)
 {
-	int h_tens_dig, h_ones_dig, m_tens_dig, m_ones_dig; /* unique variable names for each digit of the time */
+	int h_tens_dig, h_ones_dig, m_tens_dig, m_ones_dig;
 
 	for (h_tens_dig = '0'; h_tens_dig <= '2'; h_tens_dig++)
 	{
@@ -31,4 +31,3 @@ void jack_bauer(void)
 		}
 	}
 }
-
