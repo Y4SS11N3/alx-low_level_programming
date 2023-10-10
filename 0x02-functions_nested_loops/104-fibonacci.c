@@ -6,8 +6,10 @@
  */
 int main(void)
 {
-	unsigned long int counter, fib1, fib2, fibNext, fib1_1, fib1_2, fib2_1, fib2_2;
-	/* Variables for iteration, Fibonacci numbers,
+	unsigned long int counter, fib1, fib2, fibNext;
+	unsigned long int fib1_1, fib1_2, fib2_1, fib2_2;
+	/*
+	 * Variables for iteration, Fibonacci numbers,
 	 * and auxiliary variables for large numbers
 	 */
 
@@ -43,3 +45,4 @@ int main(void)
 
 	return (0);
 }
+
