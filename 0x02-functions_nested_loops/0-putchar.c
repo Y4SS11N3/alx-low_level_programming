@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdio.h>
+#include <unistd.h>
 
 /**
  * main - Program's Launching pad
@@ -8,14 +8,15 @@
  */
 int main(void)
 {
-    char TxT[] = "_putchar"; /* text to print */
-    int idx; /* index for iteration */
+	char TxT[] = "_putchar"; /* text to print */
 
-    for (idx = 0; TxT[idx] != '\0'; idx++)
-    {
-        putchar(TxT[idx]);
-    }
-    putchar('\n');
-    return (0);
+	int idx; /* index for iteration */
+
+	for (idx = 0; TxT[idx] != '\0'; idx++)
+	{
+		_putchar(TxT[idx]);
+	}
+	_putchar('\n');
+	return (0);
 }
 
