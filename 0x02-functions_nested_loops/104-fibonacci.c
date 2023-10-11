@@ -7,45 +7,38 @@
  */
 int main(void)
 {
-	unsigned long int counter, fib1, fib2, fibNext;
-	unsigned long int fib1_1, fib1_2, fib2_1, fib2_2;
+	unsigned long int counter;
+	unsigned long int previousNumber = 1;
+	unsigned long int currentNumber = 2;
+	unsigned long int limit = 1000000000;
+	unsigned long int prev_num1;
+	unsigned long int prev_num2;
+	unsigned long int curr_num1;
+	unsigned long int curr_num2;
 
-	fib1 = 1;
-	fib2 = 2;
-
-	printf("%lu", fib1);
+	printf("%lu", previousNumber);
 
 	for (counter = 1; counter < 91; counter++)
 	{
-		printf(", %lu", fib2);
-		fibNext = fib2 + fib1;
-		fib1 = fib2;
-		fib2 = fibNext;
+		printf(", %lu", currentNumber);
+		currentNumber += previousNumber;
+		previousNumber = currentNumber - previousNumber;
 	}
 
-	fib1_1 = fib1 / 1000000000;
-	fib1_2 = fib1 % 1000000000;
-	fib2_1 = fib2 / 1000000000;
-	fib2_2 = fib2 % 1000000000;
+	prev_num1 = previousNumber / limit;
+	prev_num2 = previousNumber % limit;
+	curr_num1 = currentNumber / limit;
+	curr_num2 = currentNumber % limit;
 
 	for (counter = 92; counter < 99; ++counter)
 	{
-		printf(", %lu", fib2_1 + (fib2_2 / 1000000000));
-		printf("%lu", fib2_2 % 1000000000);
-		unsigned long int temp = fib1_1;
-		unsigned long int temp_next = temp_next % 1000000000;
-
-		temp_next += temp_next / 1000000000;
-		temp_next += temp_next / 1000000000;
-		temp_next += temp_next / 1000000000;
-		temp_next += temp_next / 1000000000;
-		temp_next += temp_next / 1000000000;
-		temp_next += temp_next / 1000000000;
-		temp_next += temp_next / 1000000000;
+		printf(", %lu", curr_num1 + (curr_num2 / limit));
+		printf("%lu", curr_num2 % limit);
+		curr_num1 += prev_num1;
+		prev_num1 = curr_num1 - prev_num1;
+		curr_num2 += prev_num2;
+		prev_num2 = curr_num2 - prev_num2;
 	}
-
 	printf("\n");
-
 	return (0);
 }
-
