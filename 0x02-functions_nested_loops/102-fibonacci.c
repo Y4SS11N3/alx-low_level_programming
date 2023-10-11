@@ -6,7 +6,8 @@
  */
 int main(void)
 {
-	long int fib1, fib2, fibNext, counter; /* Variables for Fibonacci numbers and loop counter */
+	/* Variables for Fibonacci numbers and loop counter */
+	long int fib1, fib2, fibNext, counter;
 
 	fib1 = 1;
 	fib2 = 2;
