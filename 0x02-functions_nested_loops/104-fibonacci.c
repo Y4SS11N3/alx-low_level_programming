@@ -2,16 +2,13 @@
 
 /**
  * main - Prints first 98 Fibonacci numbers.
+ *
  * Return: 0 if the program executes successfully, otherwise no
  */
 int main(void)
 {
 	unsigned long int counter, fib1, fib2, fibNext;
 	unsigned long int fib1_1, fib1_2, fib2_1, fib2_2;
-	/*
-	 * Variables for iteration, Fibonacci numbers,
-	 * and auxiliary variables for large numbers
-	 */
 
 	fib1 = 1;
 	fib2 = 2;
@@ -35,10 +32,16 @@ int main(void)
 	{
 		printf(", %lu", fib2_1 + (fib2_2 / 1000000000));
 		printf("%lu", fib2_2 % 1000000000);
-		fibNext = fib2_1 + fib1_1;
-		fib1_1 = fibNext - fib1_1;
-		fibNext = fib2_2 + fib1_2;
-		fib1_2 = fibNext - fib1_2;
+		unsigned long int temp = fib1_1;
+		unsigned long int temp_next = temp_next % 1000000000;
+
+		temp_next += temp_next / 1000000000;
+		temp_next += temp_next / 1000000000;
+		temp_next += temp_next / 1000000000;
+		temp_next += temp_next / 1000000000;
+		temp_next += temp_next / 1000000000;
+		temp_next += temp_next / 1000000000;
+		temp_next += temp_next / 1000000000;
 	}
 
 	printf("\n");
