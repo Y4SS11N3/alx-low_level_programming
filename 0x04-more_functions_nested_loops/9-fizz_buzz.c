@@ -2,8 +2,9 @@
 #include <stdio.h>
 
 /**
- * main - Entry point
- * Return: Always 0
+ * main - Program's Launching pad
+ *
+ * Return: 0 if the program executes successfully, otherwise no
  */
 int main(void)
 {
