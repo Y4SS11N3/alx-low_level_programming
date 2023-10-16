@@ -3,23 +3,35 @@
 #include <time.h>
 
 /**
- * main - Produces a keygen.
- * Return: Always 0.
+ * main - A program that generates random valid
+ * passwords for a specific program
+ *
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-	int rdm_num = 0, cmlt_sum = 0;
-	time_t t;
+	int password[100]; /** password: an array to hold the generated password */
+	int idx; /** idx: index variable for loops */
+	int total; /** total: holds the running total of the password values */
+	int temp; /** temp: temporary variable for holding intermediate values */
 
-	srand((unsigned int) time(&t));
-	while (cmlt_sum < 2772)
+	total = 0;
+
+	srand(time(NULL));
+
+	for (idx = 0; idx < 100; idx++)
 	{
-		rdm_num = rand() % 128;
-		if ((cmlt_sum + rdm_num) > 2772)
+		password[idx] = rand() % 78;
+		total += (password[idx] + '0');
+		putchar(password[idx] + '0');
+		if ((2772 - total) - '0' < 78)
+		{
+			temp = 2772 - total - '0';
+			total += temp;
+			putchar(temp + '0');
 			break;
-		cmlt_sum = cmlt_sum + rdm_num;
-		printf("%c", rdm_num);
+		}
 	}
-	printf("%c\n", (2772 - cmlt_sum));
+
 	return (0);
 }
