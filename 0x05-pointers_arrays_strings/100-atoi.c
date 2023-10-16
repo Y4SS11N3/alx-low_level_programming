@@ -8,7 +8,8 @@
 int _atoi(char *s)
 {
 	unsigned int str_idx = 0, num_size = 0, output_int = 0;
-	int sgn = 1, mlp = 1, i;
+	int sgn = 1, mlp = 1;
+	unsigned int i; /* Changed from int to unsigned int */
 
 	while (*(s + str_idx) != '\0')
 	{
