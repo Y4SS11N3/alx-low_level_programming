@@ -8,7 +8,7 @@
 */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int cnt; /* cnt used for counting matched characters */
+	unsigned int cnt = 0; /* cnt used for counting matched characters */
 	char *init_acc = accept; /* init_acc holds the initial pointer to accept */
 
 	while (*s++)
