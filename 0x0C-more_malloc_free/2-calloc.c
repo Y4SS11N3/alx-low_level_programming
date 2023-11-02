@@ -18,7 +18,6 @@ char *_fillStr(char *str, char fCh, unsigned int num)
 	return (str);
 }
 
-
 /**
  * _calloc - Allocates zeroed memory for an array using malloc
  * @nmemb: The number of elements in the array
@@ -27,7 +26,7 @@ char *_fillStr(char *str, char fCh, unsigned int num)
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *ptr; /* Pointer to the allocated memory */
+	char *ptr; /* Pointer to the allocated memory */
 
 	if (nmemb == 0 || size == 0)
 		return (NULL);
@@ -35,6 +34,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	if (ptr == NULL)
 		return (NULL);
-	_memset(ptr, 0, (nmemb * size));
-	return (ptr);
+	_fillStr(ptr, 0, (nmemb * size));
+	return ((void *)ptr);
 }
