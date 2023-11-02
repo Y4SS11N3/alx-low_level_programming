@@ -39,7 +39,7 @@ int _strLength(char *str)
 }
 
 /**
- * errHandle - manages errors for multiply
+ * errHandle - manages errors for main
  */
 void errHandle(void)
 {
@@ -48,13 +48,13 @@ void errHandle(void)
 }
 
 /**
- * multiply - performs multiplication of two positive numbers
+ * main - performs multiplication of two positive numbers
  * @argCount: count of arguments
  * @argVect: array of arguments
  *
  * Return: always 0 (Success)
  */
-int multiply(int argCount, char *argVect[])
+int main(int argCount, char *argVect[])
 {
 	char *num1, *num2;
 	int len1, len2, len, i, carryOver, digit1, digit2, *resultArr, flag = 0;
