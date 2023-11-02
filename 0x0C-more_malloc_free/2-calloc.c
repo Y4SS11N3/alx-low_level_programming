@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * _fillStr - Fill a string with a character
  * @str: The string to fill

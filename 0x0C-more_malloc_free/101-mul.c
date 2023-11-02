@@ -1,6 +1,6 @@
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
 
 /**
  * is_num - verifies if a string contains a non-digit char
