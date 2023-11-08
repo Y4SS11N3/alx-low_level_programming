@@ -1,5 +1,3 @@
-alright lets begin with this one Task 0
-
 #include <stdlib.h>
 #include "function_pointers.h"
 
