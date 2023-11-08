@@ -3,25 +3,24 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 /**
- * struct op - Structure for operator-function pairs
+ * struct op - Struct op
  *
- * @op: The arithmetic operator
- * @operation: The function that performs the operation
+ * @op: The operator
+ * @f: The function associated
  */
 typedef struct op
 {
 	char *op;
-	int (*operation)(int num1, int num2);
+	int (*f)(int a, int b);
 } op_t;
 
+int op_add(int a, int b);
+int op_sub(int a, int b);
+int op_mul(int a, int b);
+int op_div(int a, int b);
+int op_mod(int a, int b);
+int (*get_op_func(char *s))(int, int);
 
-int op_add(int num1, int num2);
-int op_sub(int num1, int num2);
-int op_mul(int num1, int num2);
-int op_div(int num1, int num2);
-int op_mod(int num1, int num2);
-int (*get_op_func(char *op))(int, int);
+#endif /* CALC_H */
 
-#endif

@@ -1,61 +1,49 @@
 #include "3-calc.h"
 
 /**
- * op_add - calculates the total of two integers
- * @num1: first integer
- * @num2: second integer
+ * op_add - returns the sum of a and b
+ * @a: first integer
+ * @b: second integer
  *
- * Return: total of num1 and num2
+ * Return: sum of a and b
  */
-int op_add(int num1, int num2)
-{
-	return (num1 + num2);
-}
+int op_add(int a, int b) { return (a + b); }
 
 /**
- * op_sub - calculates the subtraction of two integers
- * @num1: first integer
- * @num2: second integer
+ * op_sub - returns the difference of a and b
+ * @a: first integer
+ * @b: second integer
  *
- * Return: subtraction of num1 and num2
+ * Return: difference of a and b
  */
-int op_sub(int num1, int num2)
-{
-	return (num1 - num2);
-}
+int op_sub(int a, int b) { return (a - b); }
 
 /**
- * op_mul - calculates the multiplication of two integers
- * @num1: first integer
- * @num2: second integer
+ * op_mul - returns the product of a and b
+ * @a: first integer
+ * @b: second integer
  *
- * Return: multiplication of num1 and num2
+ * Return: product of a and b
  */
-int op_mul(int num1, int num2)
-{
-	return (num1 * num2);
-}
+int op_mul(int a, int b) { return (a * b); }
 
 /**
- * op_div - calculates the quotient of two integers
- * @num1: first integer
- * @num2: second integer
+ * op_div - returns the result of the division of a by b
+ * @a: first integer
+ * @b: second integer
  *
- * Return: quotient of num1 by num2
+ * Return: result of the division of a by b
  */
-int op_div(int num1, int num2)
-{
-	return (num1 / num2);
-}
+int op_div(int a, int b) { return (a / b); }
 
 /**
- * op_mod - calculates the modulus of two integers
- * @num1: first integer
- * @num2: second integer
+ * op_mod - returns the remainder of the division of a by b
+ * @a: first integer
+ * @b: second integer
  *
- * Return: modulus of num1 divided by num2
+ * Return: remainder of the division of a by b
  */
-int op_mod(int num1, int num2)
+int op_mod(int a, int b)
 {
-	return (num1 % num2);
+	return (a % b);
 }

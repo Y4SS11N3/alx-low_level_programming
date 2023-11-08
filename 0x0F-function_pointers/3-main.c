@@ -1,7 +1,7 @@
 #include "3-calc.h"
 
 /**
- * main - performs basic operations
+ * main - performs simple operations
  * @argc: number of arguments
  * @argv: array of arguments
  *
@@ -9,12 +9,8 @@
  */
 int main(int argc, char *argv[])
 {
-	/* 'num1', 'num2' are the numbers on which operation is performed */
-	int num1, num2, result;
-	/* 'o' is the operator */
-	char o;
-	/* 'func' is the function to perform the operation */
-	int (*func)(int, int);
+	int num1, num2;
+	int (*operation)(int, int);
 
 	if (argc != 4)
 	{
@@ -24,26 +20,20 @@ int main(int argc, char *argv[])
 
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
+	operation = get_op_func(argv[2]);
 
-	func = get_op_func(argv[2]);
-
-	if (!func)
+	if (!operation)
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	o = *argv[2];
-
-	if ((o == '/' || o == '%') && num2 == 0)
+	if ((operation == op_div || operation == op_mod) && num2 == 0)
 	{
 		printf("Error\n");
 		exit(100);
 	}
 
-	result = func(num1, num2);
-
-	printf("%d\n", result);
-
+	printf("%d\n", operation(num1, num2));
 	return (0);
 }
