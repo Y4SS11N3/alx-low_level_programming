@@ -9,37 +9,43 @@
 void print_all(const char * const format, ...)
 {
 	va_list valist;
-	unsigned int idx = 0, jdx, flag = 0;
-	char *txt;
+	unsigned int idx = 0, jdx, f = 0;
+	char *str;
 	const char t_arg[] = "cifs";
 
 	va_start(valist, format);
 	while (format && format[idx])
 	{
 		jdx = 0;
-		while (t_arg[jdx] && format[idx] != t_arg[jdx])
+		while (t_arg[jdx])
 		{
-			jdx++;
+			if (format[idx] == t_arg[jdx] && f)
+			{
+				printf(", ");
+				break;
+			} jdx++;
 		}
-		if (jdx < 4 && flag)
+		switch (format[idx])
 		{
-			printf(", ");
-		}
-		txt = (format[idx] == 's') ? va_arg(valist, char *) : NULL;
-		if (txt == NULL && format[idx] == 's')
-		{
-			txt = "(nil)";
-		}
-		if (jdx < 4)
-		{
-			printf((jdx < 3) ? "%c%d%f" + jdx * 2 : "%s",
-				(jdx == 0) ? va_arg(valist, int) :
-				(jdx == 1) ? va_arg(valist, int) :
-				(jdx == 2) ? va_arg(valist, double) : txt);
-			flag = 1;
-		}
-		idx++;
+		case 'c':
+			printf("%c", va_arg(valist, int)), f = 1;
+			break;
+		case 'i':
+			printf("%d", va_arg(valist, int)), f = 1;
+			break;
+		case 'f':
+			printf("%f", va_arg(valist, double)), f = 1;
+			break;
+		case 's':
+			str = va_arg(valist, char *), f = 1;
+			if (!str)
+			{
+				printf("(nil)");
+				break;
+			}
+			printf("%s", str);
+			break;
+		} idx++;
 	}
-	printf("\n");
-	va_end(valist);
+	printf("\n"), va_end(valist);
 }
