@@ -4,6 +4,7 @@
  * callfirst - executes to print a specific message before main
  * This function is called before the main function begins.
  */
+__attribute__((constructor))
 void callfirst(void)
 {
 	printf(
