@@ -12,7 +12,7 @@ listint_t *find_listint_loop(listint_t *head)
 	listint_t *fastPtr = head; /* Pointer moving at twice the speed */
 	listint_t *slowPtr = head; /* Pointer moving at normal speed */
 
-	while (head && fastPtr && fastPtr->next)
+	while (fastPtr && fastPtr->next)
 	{
 		slowPtr = slowPtr->next;
 		fastPtr = fastPtr->next->next;
@@ -20,14 +20,12 @@ listint_t *find_listint_loop(listint_t *head)
 		if (slowPtr == fastPtr)
 		{
 			slowPtr = head;
-			while (slowPtr != fastPtr->next)
+			while (slowPtr != fastPtr)
 			{
-				fastPtr = fastPtr->next;
-				if (fastPtr->next == slowPtr)
-					break;
 				slowPtr = slowPtr->next;
+				fastPtr = fastPtr->next;
 			}
-			return (fastPtr->next);
+			return (slowPtr);
 		}
 	}
 
