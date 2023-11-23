@@ -1,6 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdio.h>
+#include <limits.h>
+
 /**
  * Description: Prototypes for functions in the 0x13-bit_manipulation directory
  */
