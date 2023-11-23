@@ -7,8 +7,7 @@
  */
 int get_endianness(void)
 {
-	int num = 1;
-	char *endian = (char *)# /* Pointer to first byte of num */
+	unsigned long int num = 1; /* Declare num and initialize to 1 */
 
-	return (*endian == 1); /* 1 if little-endian, 0 if big-endian */
+	return (*(char *)&num); /* Interpret the first byte of num */
 }
