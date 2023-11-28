@@ -137,7 +137,7 @@ void print_elf_header_info(const Elf64_Ehdr *header)
 
 	/* Printing Type of ELF file */
 	type = header->e_type;
-	if (header->e_ident[EI_DATA] == ELFDATA2MSB) /* Adjust type for big-endian systems */
+	if (header->e_ident[EI_DATA] == ELFDATA2MSB)
 		type = (type >> 8) | (type << 8);
 
 	printf("  Type:                              ");
