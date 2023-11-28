@@ -69,17 +69,17 @@ void print_elf_header_info(const Elf64_Ehdr *header)
 	printf("  Data:                              ");
 	switch (header->e_ident[EI_DATA])
 	{
-	case ELFDATANONE:
-		printf("none\n");
-		break;
-	case ELFDATA2LSB:
-		printf("2's complement, little endian\n");
-		break;
-	case ELFDATA2MSB:
-		printf("2's complement, big endian\n");
-		break;
-	default:
-		printf("<unknown: %x>\n", header->e_ident[EI_DATA]);
+		case ELFDATANONE:
+			printf("none\n");
+			break;
+		case ELFDATA2LSB:
+			printf("2's complement, little endian\n");
+			break;
+		case ELFDATA2MSB:
+			printf("2's complement, big endian\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", header->e_ident[EI_DATA]);
 	}
 
 	/* Printing Version */
@@ -133,6 +133,7 @@ void print_elf_header_info(const Elf64_Ehdr *header)
 
 	/* Printing ABI Version */
 	printf("  ABI Version:                       %d\n", header->e_ident[EI_ABIVERSION]);
+
 
 	/* Printing Type of ELF file */
 	type = header->e_type;
