@@ -68,6 +68,71 @@ shash_node_t *shash_node_create(const char *key, const char *value)
 }
 
 /**
+ * insert_node_sorted - Inserts a node into the sorted doubly linked list.
+ * @ht: Pointer to the sorted hash table.
+ * @new: Pointer to the new node to insert.
+ */
+void insert_node_sorted(shash_table_t *ht, shash_node_t *new)
+{
+	shash_node_t *node;
+
+	for (node = ht->shead; node != NULL; node = node->snext)
+	{
+		if (strcmp(node->key, new->key) > 0)
+		{
+			new->snext = node;
+			new->sprev = node->sprev;
+			if (node->sprev)
+			{
+				node->sprev->snext = new;
+			}
+			else
+			{
+				ht->shead = new;
+			}
+			node->sprev = new;
+			return;
+		}
+	}
+
+	if (ht->stail)
+	{
+		ht->stail->snext = new;
+		new->sprev = ht->stail;
+		ht->stail = new;
+	}
+	else
+	{
+		ht->shead = ht->stail = new;
+	}
+}
+
+/**
+ * create_and_link_node - Creates a new node and links it to the hash table.
+ * @ht: Pointer to the sorted hash table.
+ * @key: The key of the new node.
+ * @value: The value of the new node.
+ * @index: The index to insert the node into the hash table array.
+ *
+ * Return: 1 on success, 0 on failure.
+ */
+int create_and_link_node(shash_table_t *ht, const char *key,
+const char *value, unsigned long int index)
+{
+	shash_node_t *new;
+
+	new = shash_node_create(key, value);
+	if (!new)
+		return (0);
+
+	new->next = ht->array[index];
+	ht->array[index] = new;
+	insert_node_sorted(ht, new);
+
+	return (1);
+}
+
+/**
  * shash_table_set - Adds an element to the sorted hash table.
  * @ht: The hash table to add or update the key/value in.
  * @key: The key. Cannot be an empty string.
@@ -78,14 +143,15 @@ shash_node_t *shash_node_create(const char *key, const char *value)
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	shash_node_t *node, *tmp, *new;
+	shash_node_t *tmp;
 
-	if (ht == NULL || key == NULL || strlen(key) == 0 || value == NULL)
+	if (!ht || !key || !*key || !value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	tmp = ht->array[index];
-	while (tmp)
+
+	/* Update value if key exists */
+	for (tmp = ht->array[index]; tmp; tmp = tmp->next)
 	{
 		if (strcmp(tmp->key, key) == 0)
 		{
@@ -93,46 +159,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			tmp->value = strdup(value);
 			return (1);
 		}
-		tmp = tmp->next;
 	}
 
-	new = shash_node_create(key, value);
-	if (new == NULL)
-		return (0);
-
-	new->next = ht->array[index];
-	ht->array[index] = new;
-
-	/* Insert into sorted list */
-	if (ht->shead == NULL || strcmp(ht->shead->key, key) >= 0)
-	{
-		if (ht->shead != NULL)
-			ht->shead->sprev = new;
-		new->snext = ht->shead;
-		ht->shead = new;
-		if (ht->stail == NULL)
-			ht->stail = new;
-	}
-	else
-	{
-		for (node = ht->shead; node->snext != NULL; node = node->snext)
-		{
-			if (strcmp(node->snext->key, key) >= 0)
-			{
-				break;
-			}
-		}
-
-		new->snext = node->snext;
-		if (node->snext != NULL)
-			node->snext->sprev = new;
-		else
-			ht->stail = new;
-		new->sprev = node;
-		node->snext = new;
-	}
-
-	return (1);
+	/* Create and link a new node */
+	return (create_and_link_node(ht, key, value, index));
 }
 
 /**
