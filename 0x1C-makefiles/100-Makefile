@@ -6,9 +6,6 @@ CC = gcc
 # Source files
 SRC = main.c school.c
 
-# Object files
-OBJ = $(SRC:.c=.o)
-
 # Name of the executable
 NAME = school
 
@@ -19,19 +16,16 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 .PHONY: all clean oclean fclean re
 
 # Default target: build the executable
-all: m.h $(OBJ)
-        # Link the object files to create the executable
-        $(CC) $(OBJ) -o $(NAME)
+all: m.h $(SRC)
+	@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 # Remove temporary files and the executable
 clean:
-# Delete Emacs and Vim temporary files, and the executable
-        $(RM) *~ $(NAME)
+	@rm -f *~ $(NAME)
 
 # Remove object files
 oclean:
-# Delete the object files
-        $(RM) $(OBJ)
+	@rm -f *.o
 
 # Remove all generated files
 fclean: clean oclean
