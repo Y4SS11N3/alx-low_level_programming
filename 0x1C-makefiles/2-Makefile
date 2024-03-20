@@ -1,0 +1,24 @@
+# 2-Makefile
+
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+
+# Name of the executable
+NAME = school
+
+# Build the executable
+all: $(NAME)
+
+# Link the object files to create the executable
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# Compile source files if they are updated
+%.o: %.c
+	$(CC) -c $< -o $@

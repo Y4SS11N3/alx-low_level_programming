@@ -1,0 +1,24 @@
+# 1-Makefile
+
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Name of the executable
+NAME = school
+
+# Build the executable
+all: $(NAME)
+
+# Link the object files to create the executable
+$(NAME): $(SRC)
+	$(CC) $(SRC) -o $(NAME)
+
+# Remove the executable
+clean:
+	rm -f $(NAME)
+
+# Force recompilation
+.PHONY: all

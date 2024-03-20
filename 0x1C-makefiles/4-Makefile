@@ -1,0 +1,44 @@
+# 4-Makefile
+
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+
+# Name of the executable
+NAME = school
+
+# Program to delete files
+RM = rm -f
+
+# Compiler flags
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Build the executable
+all: $(NAME)
+
+# Link the object files to create the executable
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# Compile source files if they are updated
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up temporary files and executable
+clean:
+	$(RM) *~ $(NAME)
+
+# Clean up object files
+oclean:
+	$(RM) $(OBJ)
+
+# Clean up everything
+fclean: clean oclean
+
+# Rebuild everything
+re: fclean all

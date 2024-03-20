@@ -1,0 +1,27 @@
+# 0-Makefile
+
+# Executable name
+NAME = school
+
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Build the executable
+all: $(NAME)
+
+# Link the object files to create the executable
+$(NAME): $(SRC)
+	$(CC) $(SRC) -o $(NAME)
+
+# Clean up object files and executable
+clean:
+	rm -f $(NAME)
+
+# Remove all generated files
+fclean: clean
+
+# Rebuild everything
+re: fclean all
