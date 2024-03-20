@@ -25,12 +25,12 @@ all: m.h $(OBJ)
 
 # Remove temporary files and the executable
 clean:
-        # Delete Emacs and Vim temporary files, and the executable
+# Delete Emacs and Vim temporary files, and the executable
         $(RM) *~ $(NAME)
 
 # Remove object files
 oclean:
-        # Delete the object files
+# Delete the object files
         $(RM) $(OBJ)
 
 # Remove all generated files
