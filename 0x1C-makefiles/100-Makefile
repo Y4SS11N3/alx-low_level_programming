@@ -1,46 +1,47 @@
 # Makefile for compiling the "school" project
 
-# Compiler and flags
+# Compiler
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra -pedantic
 
 # Source and object files
 SRC := $(wildcard *.c)
-OBJ := $(SRC:.c=.o)
+OBJ := $(patsubst %.c,%.o,$(SRC))
 
 # Name of the executable
 NAME := school
 
-# Rule for deleting files, specified indirectly to meet requirements
-define RM
-	rm -f
-endef
+# Rule for deleting files
+RM := rm -f
 
 # Default rule
 all: $(NAME)
 
 # Linking the executable
 $(NAME): $(OBJ)
+	@echo "Linking the executable..."
 	$(CC) $(OBJ) -o $(NAME)
 
 # Compiling source files into object files
-%.o: %.c m.h
-	$(CC) $(CFLAGS) -c $< -o $@
+main.o: main.c m.h
+	@echo "Compiling main.c..."
+	$(CC) -c $< -o $@
 
-# Rule for cleaning up Emacs and Vim temporary files along with the executable
+school.o: school.c m.h
+	@echo "Compiling school.c..."
+	$(CC) -c $< -o $@
+
+# Rule for cleaning up Emacs and Vim temporary files along with the executable and object files
 clean:
-	$(RM) *~ \#*\# $(NAME)
-
-# Rule for deleting object files
-oclean:
-	$(RM) $(OBJ)
-
-# Rule for deleting all temporary files, the executable, and object files
-fclean: clean oclean
+	@echo "Cleaning up..."
+	$(RM) *~ \#*\# $(NAME) $(OBJ)
 
 # Rule for forcing recompilation of all source files
-re: fclean all
+re: clean all
+
+# Ensure that the header file m.h exists
+m.h:
+	@echo "Error: Missing header file m.h" >&2; exit 1
 
 # Special rule to prevent problems if a file has the same name as a rule
-.PHONY: all clean fclean oclean re
+.PHONY: all clean re
 
