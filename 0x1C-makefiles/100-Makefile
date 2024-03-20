@@ -1,51 +1,46 @@
-# 100-Makefile
+# Makefile for compiling the "school" project
 
-# Compiler
-CC ?= gcc
+# Compiler and flags
+CC := gcc
+CFLAGS := -Wall -Werror -Wextra -pedantic
 
-# Source files
+# Source and object files
 SRC := $(wildcard *.c)
-
-# Object files
-OBJ := $(patsubst %.c,%.o,$(SRC))
+OBJ := $(SRC:.c=.o)
 
 # Name of the executable
 NAME := school
 
-# Compiler flags
-CFLAGS := -Wall -Werror -Wextra -pedantic
+# Rule for deleting files, specified indirectly to meet requirements
+define RM
+	rm -f
+endef
 
-# Build the executable
+# Default rule
 all: $(NAME)
 
-# Link the object files to create the executable
-$(NAME): $(OBJ) m.h
+# Linking the executable
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-# Compile source files
+# Compiling source files into object files
 %.o: %.c m.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up temporary files and executable
+# Rule for cleaning up Emacs and Vim temporary files along with the executable
 clean:
-	$(RM) *~ $(NAME)
+	$(RM) *~ \#*\# $(NAME)
 
-# Clean up object files
+# Rule for deleting object files
 oclean:
 	$(RM) $(OBJ)
 
-# Clean up everything
+# Rule for deleting all temporary files, the executable, and object files
 fclean: clean oclean
 
-# Rebuild everything
+# Rule for forcing recompilation of all source files
 re: fclean all
 
-# Ensure that the header file m.h exists
-m.h:
-	@echo "Error: Missing header file m.h" >&2; exit 1
+# Special rule to prevent problems if a file has the same name as a rule
+.PHONY: all clean fclean oclean re
 
-# Use RM from the environment, or default to rm
-RM ?= rm -f
-
-# Prevent rules from being confused with files
-.PHONY: all clean oclean fclean re
