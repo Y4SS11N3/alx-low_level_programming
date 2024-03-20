@@ -1,0 +1,51 @@
+# 100-Makefile
+
+# Compiler
+CC ?= gcc
+
+# Source files
+SRC := $(wildcard *.c)
+
+# Object files
+OBJ := $(patsubst %.c,%.o,$(SRC))
+
+# Name of the executable
+NAME := school
+
+# Compiler flags
+CFLAGS := -Wall -Werror -Wextra -pedantic
+
+# Build the executable
+all: $(NAME)
+
+# Link the object files to create the executable
+$(NAME): $(OBJ) m.h
+	$(CC) $(OBJ) -o $(NAME)
+
+# Compile source files
+%.o: %.c m.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up temporary files and executable
+clean:
+	$(RM) *~ $(NAME)
+
+# Clean up object files
+oclean:
+	$(RM) $(OBJ)
+
+# Clean up everything
+fclean: clean oclean
+
+# Rebuild everything
+re: fclean all
+
+# Ensure that the header file m.h exists
+m.h:
+	@echo "Error: Missing header file m.h" >&2; exit 1
+
+# Use RM from the environment, or default to rm
+RM ?= rm -f
+
+# Prevent rules from being confused with files
+.PHONY: all clean oclean fclean re
