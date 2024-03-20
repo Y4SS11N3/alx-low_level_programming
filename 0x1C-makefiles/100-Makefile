@@ -1,0 +1,39 @@
+# Compiler to be used
+CC = gcc
+
+# Source files to be compiled
+SRC = main.c school.c
+
+# Object files to be generated from source files
+OBJ = $(SRC:.c=.o)
+
+# Output binary name
+NAME = school
+
+# Compiler flags
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Phony targets
+.PHONY: all clean oclean fclean re
+
+# Default target
+all: m.h $(OBJ)
+	# Linking object files to create the binary
+	$(CC) $(OBJ) -o $(NAME)
+
+# Target to clean temporary files
+clean:
+	# Removing temporary files and the binary
+	$(RM) *~ $(NAME)
+
+# Target to clean object files
+oclean:
+	# Removing object files
+	$(RM) $(OBJ)
+
+# Target to clean all files
+fclean: clean oclean
+
+# Target to recompile all files
+re: fclean all
+
