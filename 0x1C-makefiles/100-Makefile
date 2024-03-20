@@ -1,34 +1,21 @@
-# Makefile for compiling the "school" project
-
-# Compiler
 CC = gcc
-
-# Source files
 SRC = main.c school.c
-
-# Name of the executable
+OBJ = $(SRC:.c=.o)
 NAME = school
-
-# Compiler flags
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Declare all, clean, oclean, fclean, and re as phony targets
 .PHONY: all clean oclean fclean re
 
-# Default target: build the executable
-all: m.h $(SRC)
-	@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
-# Remove temporary files and the executable
 clean:
-	@rm -f *~ $(NAME)
+	$(RM) *~ $(NAME)
 
-# Remove object files
 oclean:
-	@rm -f *.o
+	$(RM) $(OBJ)
 
-# Remove all generated files
 fclean: clean oclean
 
-# Force recompilation of everything
 re: fclean all
+
